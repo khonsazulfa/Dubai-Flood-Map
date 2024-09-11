@@ -57,13 +57,13 @@ var change = before.subtract(after).rename('flood') // Changes of image between 
 
 Map.addLayer(change.clip(geometry),[],'flood', false) // Output 4
 
-// To understand the distribution of flood (in pixel values) within the image.
+// To understand the distribution of flood within the image.
 print(
   ui.Chart.image.histogram(change, geometry, 100) 
   ) // Output 5
   
 //Calculate the flood area
-var flood_thr = change.gt(2);
+var flood_thr = change.gt(-5); // we pick -5 value as the minimum threshold to detect flood
 var flood_mask = flood_thr.updateMask(flood_thr);
 var flood_area = flood_mask.multiply(ee.Image.pixelArea().divide(1e6));
 var area_sum = flood_area.reduceRegion({
