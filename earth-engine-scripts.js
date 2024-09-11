@@ -14,7 +14,7 @@ var imageCollection = ee.ImageCollection("COPERNICUS/S1_GRD"),
           [114.91198767261514, -3.4790401501785615],
           [114.91198767261514, -3.2747751904408777]]], null, false);
 
-Map.centerObject (geometry);
+Map.centerObject (geometry); // Output 1
 
 
 var time_start = '2021', time_end = '2022' // Select which year and month of image data we want to collect
@@ -36,7 +36,8 @@ var before = imageCollection
 .select('VV')
 .min();
 
-Map.addLayer(before.clip(geometry),[],'before', false);
+Map.addLayer(before.clip(geometry),[],'before', false); // Output 2
+
 
 // Let's proceed the image on 2021 July (after the flood)
 var after = imageCollection
@@ -49,16 +50,17 @@ var after = imageCollection
 .select('VV')
 .min();
 
-Map.addLayer(after.clip(geometry),[],'after', false);
+Map.addLayer(after.clip(geometry),[],'after', false); // Output 3
 
 
 var change = before.subtract(after).rename('flood') // Changes of image between before and after 
 
-Map.addLayer(change.clip(geometry),[],'flood', false)
+Map.addLayer(change.clip(geometry),[],'flood', false) // Output 4
 
+// To understand the distribution of flood (in pixel values) within the image.
 print(
-  ui.Chart.image.histogram(change, geometry, 100) // To understand the distribution of flood (in pixel values) within the image.
-  )
+  ui.Chart.image.histogram(change, geometry, 100) 
+  ) // Output 5
   
 //Calculate the flood area
 var flood_thr = change.gt(2);
@@ -68,5 +70,5 @@ var area_sum = flood_area.reduceRegion({
   reducer: ee.Reducer.sum(), geometry: geometry, scale: 100
   }).values().get(0);
   
-print(ee.Number(area_sum).round())
+print(ee.Number(area_sum).round()) // Output 6
 
