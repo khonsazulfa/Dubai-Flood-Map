@@ -25,7 +25,7 @@ black area is the flooded area
 
 ![ee-chart](https://github.com/user-attachments/assets/61a04351-6db7-4524-8e2b-8467fd7df664)
 
-The X axis shows difference in backscatter values (Output 4 / flood image). It helps identify the areas that experienced the most significant flooding. The negative flood value suggests that areas that were once covered by water are now exposed land or rougher terrain. The higher the negative value the more significant the change is. This technique is commonly used in flood mapping and change detection to quickly assess the extent of the flood.
+The X coordinat shows difference in backscatter values (Output 4 / flood image). It helps identify the areas that experienced the most significant flooding. The negative flood value suggests that areas that were once covered by water are now exposed land or rougher terrain. The higher the negative value the more significant the change is. This technique is commonly used in flood mapping and change detection to quickly assess the extent of the flood. The Y coordinat presents the number of pixel in the region.
 
 # Output 6
 ## Calculation on area of flood
